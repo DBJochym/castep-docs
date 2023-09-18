@@ -1902,7 +1902,7 @@ You cannot drag and drop into VESTA.</p>
 </li>
 <li>
 <p>Now run CASTEP on Arcus using the 2-atom input files.</p>
-<p><code>$ castepsub -n 1 Si2</code></p>
+<p><code>$ castep.mpi Si2</code></p>
 <p>This should only take a few seconds and produce a readable output file <code>Si2.castep</code>. Examine this file and try to understand the meaning of the various parts. In particular check the section following the header which lists all of the input parameters, both explicit and default. Note what default values of the major parameters CASTEP chose where you did not specify them explicitly. (There will be some whose meaning has not been explained. Don't worry about these.) </p>
 <ul>
 <li>Find the section of the file which monitors the SCF loop and the approach to convergence. How many SCF iterations did it need?</li>

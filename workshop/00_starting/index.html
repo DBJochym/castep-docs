@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#connecting-to-the-arcus-cluster-in-oxford" class="md-skip">
+        <a href="#connecting-to-teaching0" class="md-skip">
           Skip to content
         </a>
       
@@ -1432,36 +1432,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#connecting-to-the-arcus-cluster-in-oxford" class="md-nav__link">
-    Connecting to the Arcus Cluster in Oxford
+  <a href="#connecting-to-teaching0" class="md-nav__link">
+    Connecting to teaching0
   </a>
+  
+    <nav class="md-nav" aria-label="Connecting to teaching0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-castep" class="md-nav__link">
+    Loading CASTEP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-vesta" class="md-nav__link">
+    Loading Vesta
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-your-first-cluster-job" class="md-nav__link">
-    Running your first cluster job
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-0" class="md-nav__link">
-    Step 0
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1" class="md-nav__link">
-    Step 1
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-preparing-submitting-a-job" class="md-nav__link">
-    Step 2 - Preparing &amp; submitting a job
+  <a href="#connecting-to-young" class="md-nav__link">
+    Connecting to young
   </a>
   
 </li>
@@ -1720,36 +1719,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#connecting-to-the-arcus-cluster-in-oxford" class="md-nav__link">
-    Connecting to the Arcus Cluster in Oxford
+  <a href="#connecting-to-teaching0" class="md-nav__link">
+    Connecting to teaching0
   </a>
+  
+    <nav class="md-nav" aria-label="Connecting to teaching0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-castep" class="md-nav__link">
+    Loading CASTEP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-vesta" class="md-nav__link">
+    Loading Vesta
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-your-first-cluster-job" class="md-nav__link">
-    Running your first cluster job
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-0" class="md-nav__link">
-    Step 0
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-1" class="md-nav__link">
-    Step 1
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-preparing-submitting-a-job" class="md-nav__link">
-    Step 2 - Preparing &amp; submitting a job
+  <a href="#connecting-to-young" class="md-nav__link">
+    Connecting to young
   </a>
   
 </li>
@@ -1797,56 +1795,24 @@
 
   <h1>0 Logging on</h1>
 
-<h2 id="connecting-to-the-arcus-cluster-in-oxford">Connecting to the Arcus Cluster in Oxford</h2>
-<p>We will use mobaXterm to connect to the arcus cluster. This uses Xwindows and <code>ssh</code>.</p>
-<p>You will find mobaXterm in the H: drive on your machine.</p>
-<p>Click on the <code>Session</code> icon. Choose <code>ssh</code>. Enter <code>arc-login.arc.ox.ac.uk</code> as the remote host and enter the username given to you (e.g. <code>teaching99</code>). Click <code>OK</code> and it will then prompt you for your ARC password.</p>
-<p><strong>Do not allow the computer to save your password</strong></p>
-<p>You are connected to the arcus Cluster!!</p>
-<h2 id="running-your-first-cluster-job">Running your first cluster job</h2>
-<p>For this very first example you are going to submit a castep job to the queuing system. This will take place in the following steps:</p>
-<ul>
-<li>Creating a working area and copying some example code into it</li>
-<li>Preparing and and submitting the job</li>
-<li>Checking the output</li>
-</ul>
-<p>All the things which you should type are in bold and your Linux prompt is always shown as:</p>
-<p><code>[teaching01@arc-login01 ~]$</code></p>
-<p>i.e. you do not need to type <code>[teaching01@arc-login01 ~]$</code></p>
-<h2 id="step-0">Step 0</h2>
-<p>Copy over the environment</p>
-<p><code>[teaching01@arc-login01 ~]$ cp /home/jryates/WORKSHOP/bash_profile_castep $HOME/.bash_profile</code> </p>
-<p>Note carefully the dot (<code>.</code>) before the second bash and the fact that the above is all on one line. Now you've copied the environment you need to activate it:</p>
-<p><code>source $HOME/.bash_profile</code></p>
-<h2 id="step-1">Step 1</h2>
-<p>Copying the examples into a working area.</p>
-<p>Firstly, let's create a temporary working area to do the examples in. This is usually a good idea for every distinct problem you're working on as it keeps things tidy and manageable. We'll create a directory (or <em>folder</em> in Windows parlance) called <code>intro</code> using the Linux command  mkdir</p>
-<p><code>[teaching01@arc-login01 ~]$ mkdir intro</code></p>
-<p>Now check that your intro directory has been made properly by listing the directory (or folder) you
-are already in:</p>
-<p><code>[teaching01@arc-login01 ~]$ ls</code></p>
-<p>and you should see a list of files and directories including the new examples directory. Now let's <em>move</em> into that directory:</p>
-<p><code>[teaching01@arc-login01 ~]$ cd intro</code></p>
-<p>Note that <code>cd</code> is the Linux command for changing directories. You can move back to your home directory at any time by typing <code>cd</code> just on its own. You can check your current directory at
-anytime with the <code>pwd</code> command:</p>
-<p><code>[teaching01@arc-login01 ~]$ pwd</code></p>
-<p>If you run <code>ls</code> in the examples directory, nothing is listed as there are no files yet (try it). Let's copy the example code from one directory (provided by the tutors) to your current location. Note the space between the <code>*</code> and <code>.</code>:</p>
-<p><code>[teaching01@arc-login01 ~]$ cp /home/jryates/WORKSHOP/intro/* .</code></p>
-<p>Do <strong>NOT</strong> forget the <code>.</code> character. To Linux this means "my current directory". So you are copying (with the <code>cp</code> command) all files (represented by <code>*</code>) in the directory <code>/home/jryates/WORKSHOP/intro</code>  to your current directory.
-Now try an <code>ls</code> to see what you've got. You should see several files:</p>
-<div class="highlight"><pre><span></span><code>[teaching01@arc-login01 ~]$ ls
-diamond.cell diamond.param
-</code></pre></div>
-<p>These are the usual <code>.cell</code> and <code>.param</code> castep input files.
-To look at the files you can use the command called more (similar commands are <code>cat</code> and <code>less</code>)</p>
-<p><code>[teaching01@arc-login01 ~]$ more diamond.cell</code></p>
-<h2 id="step-2-preparing-submitting-a-job">Step 2 - Preparing &amp; submitting a job</h2>
-<p>Now we are ready to submit the job to the queue. The special command <code>castepsub</code> is used for this.
-We’ve written this command specially for the workshop - on your local cluster there will be a different (but very similar) way to submit jobs to the cluster.</p>
-<p><code>[teaching01@arc-login01 ~]$ castepsub -n 4 diamond</code></p>
-<p>This will have submitted your job to the cluster to run on 4 processors. Use <code>ls</code> to to list your files. It should take only a few seconds to run. You can then examine the castep output file <code>diamond.castep</code>. Note how many kpoints were used.</p>
-<p>Rename the <code>.castep</code> file</p>
-<p><code>[teaching01@arc-login01 ~]$ mv diamond.castep diamond_200ev.castep</code></p>
+<h2 id="connecting-to-teaching0">Connecting to teaching0</h2>
+<p>Open a terminal and type:</p>
+<p><code>ssh -X teaching0</code></p>
+<p>This should present you with a prompt:</p>
+<p><code>&lt;username&gt;@teaching0:~$</code></p>
+<h3 id="loading-castep">Loading CASTEP</h3>
+<p>The command</p>
+<p><code>module load phys/CASTEP</code></p>
+<p>should load castep into the environment as <code>castep.mpi</code>. You can test this with</p>
+<p><code>castep.mpi -v</code></p>
+<h3 id="loading-vesta">Loading Vesta</h3>
+<p>There is an incompatability with the VESTA and CASTEP modules on teaching0.</p>
+<p>Instead, open a new terminal and connect again to teaching0 (<code>ssh -X teaching0</code>). You can then load the VESTA module with:</p>
+<p><code>module load vis/VESTA</code></p>
+<p>and run it:</p>
+<p><code>VESTA</code></p>
+<h2 id="connecting-to-young">Connecting to young</h2>
+<p>...</p>
 <h2 id="editing-a-file">Editing a file</h2>
 <p>Edit the diamond.param file (increase the cutoff energy to 400 eV). To do this you will need to use an editor. (for experts <code>vi</code> and <code>emacs</code> are available). Otherwise I suggest using an editor called <code>nano</code>. This has helpful list of instructions are the bottom of the screen (but ask if you are confused!)</p>
 <p><code>[teaching01@arc-login01 ~]$ nano diamond.param</code></p>
@@ -1867,8 +1833,7 @@ We’ve written this command specially for the workshop - on your local cluster 
 <li><code>cp ~/myfile ./</code>   - copy the file <code>myfile</code> in your home folder to the current folder</li>
 <li><code>squeue</code>  - look at the list of jobs running and queued on the cluster</li>
 <li><code>squeue -u teachingXX</code>  - look at the list of jobs running for the user <code>teachingXX</code></li>
-<li><code>castepsub -n 8 diamond</code>  - submits a castep job with <code>diamond.cell</code> and <code>diamond.param</code> as inputs onto 8 cores with a time limit of 1 hour</li>
-<li><code>castepsub -n 8 -W 00:20:00</code>  - as above but only run for 20 minutes</li>
+<li><code>mpirun -np 8 castep.mpi diamond</code>  - submits a castep job with <code>diamond.cell</code> and <code>diamond.param</code> as inputs onto 8 cores with a time limit of 1 hour</li>
 </ul>
 <h3 id="c2x">c2x</h3>
 <p>This is a handy free program written by Michael Rutter (TCM group Cambridge). It can convert
