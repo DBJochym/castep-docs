@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#practical-4-molecular-dynamics" class="md-skip">
+        <a href="#molecular-dynamics" class="md-skip">
           Skip to content
         </a>
       
@@ -1761,12 +1761,11 @@
                 
 
 
-<h1 id="practical-4-molecular-dynamics">Practical 4 -- Molecular Dynamics</h1>
+<h1 id="molecular-dynamics">Molecular Dynamics</h1>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>
-<p>Perform <em>ab initio</em> molecular dynamics calculations on simple
-    systems.</p>
+<p>Perform <em>ab initio</em> molecular dynamics calculations on simple systems.</p>
 </li>
 <li>
 <p>Investigate factors affecting energy conservation, etc.</p>
@@ -1776,39 +1775,43 @@
 </li>
 </ul>
 <h2 id="n2-dimer">N<sub>2</sub> Dimer</h2>
-<p>As a simple example, we will explore the system discussed in the lecture
--- the N2 dimer.</p>
-<p>1. Download the input files</p>
-<p><strong>wget
-<a href="http://www-users.york.ac.uk/~mijp1/teaching/grad_FPMM/files/4.tar.gz">http://www-users.york.ac.uk/~mijp1/teaching/grad_FPMM/files/4.tar.gz</a></strong></p>
-<p>2. Unzip and untar the files, then move into the new directory</p>
-<p><strong>$ gunzip 4.tar.gz</strong></p>
-<p><strong>$ tar -xvf 4.tar</strong></p>
-<p><strong>$ cd N2</strong></p>
-<p>3. Run this and then read the <strong>N2.castep</strong> file -- see how the MD
-information is reported. Plot a graph of temperature vs. time -- does it
-look correct?</p>
+<p>As a simple example, we will explore the system discussed in the lecture -- the N2 dimer.</p>
+<ol>
+<li>
+<p>Download the input files <a href="../MD_N2.tar.gz">MD_N2.tar.gz</a></p>
+<div class="highlight"><pre><span></span><code>wget http://paste-path-to-linked-file-/MD_N2.tar.gz
+</code></pre></div>
+</li>
+<li>
+<p>Unzip and untar the files, then move into the new directory</p>
+<div class="highlight"><pre><span></span><code>tar -xzvf MD_N2.tar.gz
+cd N2
+</code></pre></div>
+</li>
+<li>
+<p>Run this and then read the <strong>N2.castep</strong> file -- see how the MD information is reported. Plot a graph of temperature vs. time -- does it look correct?</p>
 <p>Hint: try</p>
-<p><strong>$ grep Temp N2.castep | awk '{print c++,$3}' &gt; N2.T</strong></p>
-<p>to get a 2-column file of temperature vs MD step. Is there an initial
-transient?</p>
-<p>4. What is the effect of electronic convergence (<strong>cut_off_energy</strong>,
-<strong>elec_energy_tol</strong> , etc) on the energy conservation? What is the
-effect of changing the time step or the thermostat used? Plot a graph of
-"Hamilt Energy" vs MD step to see.</p>
-<p>5. Make a movie of your dynamics. Load the N2.md file in <strong>jmol</strong> and
-use Tools/Animate to see it in action.</p>
-<p>6. Calculate the average bond length, as a function of temperature --
-is the system harmonic or anharmonic?</p>
+<div class="highlight"><pre><span></span><code>grep Temp N2.castep | awk &#39;{print c++,$3}&#39; &gt; N2.T
+</code></pre></div>
+<p>to get a 2-column file of temperature vs MD step. Is there an initial transient?</p>
+</li>
+<li>
+<p>What is the effect of electronic convergence (<strong>cut_off_energy</strong>, <strong>elec_energy_tol</strong> , etc) on the energy conservation? What is the effect of changing the time step or the thermostat used? Plot a graph of "Hamilt Energy" vs MD step to see.</p>
+</li>
+<li>
+<p>Make a movie of your dynamics. Load the N2.md file in <strong>jmol</strong> and use Tools/Animate to see it in action.</p>
+</li>
+<li>
+<p>Calculate the average bond length, as a function of temperature -- is the system harmonic or anharmonic?</p>
 <p>Hint: try something like this:</p>
-<p>$ grep \' N 1\' N2.castep | awk \'{print $4,$5,$6}\' &gt; N2.r1</p>
-<p>$ grep \' N 2\' N2.castep | awk \'{print $4,$5,$6}\' &gt; N2.r2</p>
-<p>$ paste N2.r1 N2.r2 | awk \'{print
-c++,10.0*sqrt(($4-$11)^2+($5-$12)^2+($6-$13)^2)}\' &gt; N2.r12</p>
+<div class="highlight"><pre><span></span><code>grep &#39; N 1&#39; N2.castep | awk &#39;{print $4,$5,$6}&#39; &gt; N2.r1
+grep &#39; N 2&#39; N2.castep | awk &#39;{print $4,$5,$6}&#39; &gt; N2.r2
+paste N2.r1 N2.r2 | awk &#39;{print c++,10.0*sqrt(($4-$11)^2+($5-$12)^2+($6-$13)^2)}&#39; &gt; N2.r12
+</code></pre></div>
+</li>
+</ol>
 <h2 id="h2-molecule">H<sub>2</sub> Molecule</h2>
-<p>Copy the N2.cell and N2.param files to a new directory, and edit them to
-create a suitable set of input files for the H<sub>2</sub> molecule. Use CASTEP
-to run MD on this new system for a similar amount of time.</p>
+<p>Copy the N2.cell and N2.param files to a new directory, and edit them to create a suitable set of input files for the H<sub>2</sub> molecule. Use CASTEP to run MD on this new system for a similar amount of time.</p>
 <ul>
 <li>
 <p><em>Do you have any problems?</em></p>
@@ -1818,21 +1821,15 @@ to run MD on this new system for a similar amount of time.</p>
 </li>
 </ul>
 <h2 id="extension-activities">Extension activities</h2>
-<p>If you wish to explore further, you can use MD to study any system
-(aperiodic, supercell, bulk etc) that you are interested in. There are
-many properties that can be calculated sampled within an MD run. For
-example, if you have population analysis turned on, set
-<strong>md_sample_iter=10</strong> to re-calculate it every 10 steps during the MD
-run.</p>
-<p>You can also analyse the resulting MD trajectory using tools such as
-**mdtep (**which was installed in the first practical).</p>
+<p>If you wish to explore further, you can use MD to study any system (aperiodic, supercell, bulk etc) that you are interested in. There are many properties that can be calculated sampled within an MD run. For example, if you have population analysis turned on, set <strong>md_sample_iter=10</strong> to re-calculate it every 10 steps during the MD run.</p>
+<p>You can also analyse the resulting MD trajectory using tools such as **mdtep (**which was installed in the first practical).</p>
 <h2 id="using-mdtep">Using MDTEP</h2>
 <p>MDTEP is designed to analyse a CASTEP .md file. To use it you should</p>
-<p><strong>wget
-<a href="http://www-users.york.ac.uk/~mijp1/teaching/grad_FPMM/files/mdtep_sample.input">http://www-users.york.ac.uk/~mijp1/teaching/grad_FPMM/files/mdtep_sample.input</a></strong>
-and customize it as you wish and put it in the directory with your MD
-run. You can then use it to analyse your MD run using:</p>
-<p><strong>$ mdtep mdtep_sample.input</strong></p>
+<p><div class="highlight"><pre><span></span><code>wget http://www-users.york.ac.uk/~mijp1/teaching/grad_FPMM/files/mdtep_sample.input
+</code></pre></div>
+and customize it as you wish and put it in the directory with your MD run. You can then use it to analyse your MD run using:</p>
+<div class="highlight"><pre><span></span><code>mdtep mdtep_sample.input
+</code></pre></div>
 
               
             </article>
