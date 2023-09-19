@@ -1790,7 +1790,7 @@
 <h1 id="phonons-and-spectroscopy-tutorial">Phonons and Spectroscopy Tutorial</h1>
 <p>The aims of this tutorial session is to introduce you to running larger-scale CASTEP jobs on supercomputer clusters, editing of input files for and setup of CASTEP     jobs, and analysis of the results using standalone tools.  To achieve results without waiting too long for jobs to complete the initial runs will be small ones, but    the aim by the end of this afternoon should be to set up larger and more significant runs.   Today's session will entirely comprise insulators or semiconductors.
 You may need to consult the CASTEP phonon users guide, which may be accessed <a href="http://www.tcm.phy.cam.ac.uk/castep/Phonons_Guide/Castep_Phonons.html">here</a>
-The practical will be conducted using the arc service. Make a directory called (e.g.) <code>Phonons</code> and copy the files <code>/home/jryates/WORKSHOP/h-BN.cell</code> and <code>/home/jryates/WORKSHOP/h-BN.param</code> into the new folder.</p>
+The practical will be conducted using the arc service. Make a directory called (e.g.) <code>Phonons</code> and copy the files <a href="h-BN.cell">h-BN.cell</a> and <a href="h-BN.param">h-BN.param</a> into the new folder.</p>
 <h2 id="a-gammagamma-point-phonon-in-h-bn">A. <span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span>-Point phonon in h-BN</h2>
 <p>The first exercise will take you through the construction of a <span class="arithmatex"><span class="MathJax_Preview">\Gamma</span><script type="math/tex">\Gamma</script></span> point phonon calculation and the generation of a simple model infrared spectrum of a semiconductor. It will also introduce you to the use of some additional analysis and visualisation tools.</p>
 <p>BN is one of a family of Nitride semiconductors, which occurs in cubic zincblende (c-BN), hexagonal wurtzite (h-BN) and graphite-like hexagonal (h-BN) polymorphs.  We will calculate the phonons, infrared spectrum and Raman spectrum of h-BN.</p>
@@ -1816,7 +1816,7 @@ and one to specify a gamma-point phonon wavevector</p>
 <p>This tells CASTEP to read the intput files and summaries the calculation in the <code>.castep</code> file, but does not run the electronic structure calculation. It is very useful to check syntax before submitting to a batch queue (and finding out later you’d made a spelling mistake!).</p>
 <p>Check to see if any <code>.err</code> files are produced and fix issues, if any. If / when no errors are returned, congratulations.  You have set up the input files, and you can delete the dryrun .castep file.
 Once you have in place the <code>&lt;seed&gt;.cell</code> and <code>&lt;seed&gt;.param</code> files you are ready to submit the CASTEP job.  This is done using our general script:</p>
-<div class="highlight"><pre><span></span><code>castepsub  -n 16 h-BN
+<div class="highlight"><pre><span></span><code>mpirun -n 4 castep.mpi  h-BN
 </code></pre></div>
 <p>which requests a 16-core parallel run. Use the <code>squeue -u $USER</code> command to monitor the progress of your calculation. When it has finished, you can examine the output file <code>h-BN.castep</code> and find the frequencies.  What you see is explained further in the Phonons user guide linked above. There is also a machine-readable file <code>h-BN.phonon</code> which contains the frequencies and also the eigenvectors which we will analyse.</p>
 </li>
