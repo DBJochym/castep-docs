@@ -1463,6 +1463,33 @@
     Connecting to young
   </a>
   
+    <nav class="md-nav" aria-label="Connecting to young">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-the-submission-script" class="md-nav__link">
+    Copy the submission script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scratch" class="md-nav__link">
+    Scratch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-a-castep-calculation" class="md-nav__link">
+    Running a castep calculation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1764,6 +1791,33 @@
     Connecting to young
   </a>
   
+    <nav class="md-nav" aria-label="Connecting to young">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-the-submission-script" class="md-nav__link">
+    Copy the submission script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scratch" class="md-nav__link">
+    Scratch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-a-castep-calculation" class="md-nav__link">
+    Running a castep calculation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1826,7 +1880,41 @@
 <p>and run it:</p>
 <p><code>VESTA</code></p>
 <h2 id="connecting-to-young">Connecting to young</h2>
-<p>...</p>
+<p>Open a terminal and type</p>
+<p><code>ssh -X mmmXXXX@young.rc.ucl.ac.uk</code></p>
+<p>replacing mmmXXXX with your young account. This should present you with a shell on young:</p>
+<p><code>[mmm0389@login01 ~]$</code></p>
+<p>If you want to use the castep tools, (c2x, orbitals2bands, etc), you should add these to your path:</p>
+<p><code>export PATH=$PATH:/home/mmm0389/castep-24</code></p>
+<p>This will give you access to castep.mpi as well as the full suite of tools that come with castep.</p>
+<h3 id="copy-the-submission-script">Copy the submission script</h3>
+<p>To actually run castep on this machine, you need to use a submission script. This is similar to how most HPC systems work, and is useful if you intend to learn how to run castep on your own cluster.</p>
+<p><code>cp ~mmm0389/run_castep24.sh ~/</code></p>
+<p>This will give you a file called run_castep24.sh in your home folder. You <em>must</em> edit this file and change the line UKCP_EXT to be your relevant group on young. Please ask if you are not sure, as this will give errors later on. </p>
+<h3 id="scratch">Scratch</h3>
+<p>All calculations must be performed in the Scratch folder. This is a high speed filesystem for use in HPC environments. The folder is ~/Scratch </p>
+<h3 id="running-a-castep-calculation">Running a castep calculation</h3>
+<p>Create the cell and param files as normal. Copy the script into the folder and edit the final line which contains "Si2". Change this to be the <name> part of your castep calculation.</p>
+<p>eg. If your files are Al.cell and Al.param, change the last line to read</p>
+<p><code>gerun castep.mpi Al</code></p>
+<p>The number of cores are controlled by the line</p>
+<p><code>#$ -pe mpi 16</code></p>
+<p>and the job time limit by</p>
+<p><code>#$ -l h_rt=0:20:0</code></p>
+<p>requests a 20 minute (max) run.</p>
+<p>Once this file has been edited, submit it to the queue with</p>
+<p><code>qsub run_castep24.sh</code></p>
+<p>You can see the status of the job by typing</p>
+<p><code>qstat</code></p>
+<p>which will show your active jobs, eg.</p>
+<div class="highlight"><pre><span></span><code>[mmm0389@login01 ~]$ qstat
+job-ID  prior   name       user         state submit/start at     queue                          slots ja-task-ID
+-----------------------------------------------------------------------------------------------------------------
+1141619 2.51381 Castep-exa mmm0389      qw    09/19/2023 12:04:38                                   16
+</code></pre></div>
+<p>It should change from "qw" (queued and waiting) to "r" (running) and then once the calculation is complete, it should disappear.</p>
+<p>To cancel a job, use the job-id from qstat and type</p>
+<p><code>qdel &lt;job number&gt;</code></p>
 <h2 id="editing-a-file">Editing a file</h2>
 <p>Edit the diamond.param file (increase the cutoff energy to 400 eV). To do this you will need to use an editor. (for experts <code>vi</code> and <code>emacs</code> are available). Otherwise I suggest using an editor called <code>nano</code>. This has helpful list of instructions are the bottom of the screen (but ask if you are confused!)</p>
 <p><code>[teaching01@arc-login01 ~]$ nano diamond.param</code></p>
