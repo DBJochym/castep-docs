@@ -1818,7 +1818,7 @@ and one to specify a gamma-point phonon wavevector</p>
 Once you have in place the <code>&lt;seed&gt;.cell</code> and <code>&lt;seed&gt;.param</code> files you are ready to submit the CASTEP job.  This is done using our general script:</p>
 <div class="highlight"><pre><span></span><code>mpirun -n 4 castep.mpi  h-BN
 </code></pre></div>
-<p>which requests a 16-core parallel run. Use the <code>squeue -u $USER</code> command to monitor the progress of your calculation. When it has finished, you can examine the output file <code>h-BN.castep</code> and find the frequencies.  What you see is explained further in the Phonons user guide linked above. There is also a machine-readable file <code>h-BN.phonon</code> which contains the frequencies and also the eigenvectors which we will analyse.</p>
+<p>which requests a 16-core parallel run. Use the <code>qstat</code> command to monitor the progress of your calculation. When it has finished, you can examine the output file <code>h-BN.castep</code> and find the frequencies.  What you see is explained further in the Phonons user guide linked above. There is also a machine-readable file <code>h-BN.phonon</code> which contains the frequencies and also the eigenvectors which we will analyse.</p>
 </li>
 <li>
 <p>Analysis of h-BN phonon output.</p>
