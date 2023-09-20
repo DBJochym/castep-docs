@@ -1711,7 +1711,7 @@
 <li>
 <p>Geometry Optimisation</p>
 <p>Good transition state searches are based upon good structural relaxations of the initial and final states. The first step is therefore to perform geometry optimisations for your reactant <code>H_Initial</code> and product <code>H_Final</code>. </p>
-<p>Note that ionic constraints have been used in these to prevent translations of 2 of the ions and accelerate the geometry optimisation. You may wish to investigate what happens when these constraints are relaxed.</p>
+<p>Note that ionic constraints have been used in these to prevent translations of 2 of the ions and accelerate the geometry optimisation. You may wish to investigate what happens when these constraints are relaxed. For more complex constrained systems, it is often worthwhile changing the default geometry optimiser from <code>Geom_Method: LBFGS</code> to <code>Geom_Method: TPSD</code>, which is not disrupted by the sharp discontinuities the constraints can induce to the potential energy landscape.</p>
 </li>
 <li>
 <p>Once you have checked your end points are relaxed (ask if you are unsure how to confirm this!), you will need to create a new block:</p>
