@@ -1803,7 +1803,7 @@
 <h2 id="part-1">Part 1</h2>
 <p>We start running castep calculations by looking at two small systems, and examining the issue of "convergence".</p>
 <p>Start by copying the input files into your home directory i.e.</p>
-<p><div class="highlight"><pre><span></span><code>cp  /home/jryates/WORKSHOP/workshop_nmr_intro.tgz ./
+<p><div class="highlight"><pre><span></span><code>wget http://www.tcm.phy.cam.ac.uk/castep/oxford/workshop_nmr_intro.tgz
 </code></pre></div>
  unpack it</p>
 <div class="highlight"><pre><span></span><code>tar -zxvf workshop_nmr_intro.tgz
@@ -1861,7 +1861,7 @@ cut_off_energy  = 20 ry
 <p>Look at the cell and param file. Note that the only special keyword is <code>task = magres</code></p>
 </li>
 <li>
-<p>Run castep. <code>castepsub -n 4  ethanol</code> Look at the output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported (here we are only interested in the isotropic value.)</p>
+<p>Run castep. <code>mpirun -np 16 castep.mpi ethanol</code> Look at the output file. At the end the isotropic chemical shielding, anisotropy, and asymmetry are reported (here we are only interested in the isotropic value.)</p>
 </li>
 <li>
 <p>This information, plus the full tensors is also given in the file ethanol.magres</p>
