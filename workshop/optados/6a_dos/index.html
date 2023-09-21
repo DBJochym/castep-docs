@@ -1770,15 +1770,13 @@
 <ol>
 <li>
 <p>Perform a castep calculation on the bulk silicon using the  <code>Si2.cell</code>  and <code>Si2.param</code> input files. </p>
-<div class="highlight"><pre><span></span><code>$ castepsub -n 16 Si2 
-</code></pre></div>
 <p>This should take a couple of seconds to run. </p>
 </li>
 <li>
 <p>Examine the optados input file - <code>Si2.odi</code></p>
-<p>Perform an optados calculation. <br />
+<p>Perform an optados calculation.</p>
 <div class="highlight"><pre><span></span><code>$ optados Si2
-</code></pre></div></p>
+</code></pre></div>
 <p>This generates 3 files:</p>
 <ul>
 <li><code>Si2.odo</code> -- optados general output file.</li>
@@ -1874,7 +1872,7 @@ As the quality of the optados calculation is increased these two values should c
 <li>
 <p>We will now compare the DOS with the adaptive broadening scheme with simple Gaussian smearing. In the optados input file (<code>Si2.odi</code>) change the value of <code>BROADENING</code> to <code>fixed</code>.</p>
 <p>Plotting the fixed broadened DOS over the adaptive we see the advantages of the adaptive broadening.</p>
-<div class="highlight"><pre><span></span><code>xmgrace Si2.adaptive.agr Si2.fixed.age
+<div class="highlight"><pre><span></span><code>xmgrace Si2.adaptive.agr Si2.fixed.agr
 </code></pre></div>
 </li>
 </ol>
