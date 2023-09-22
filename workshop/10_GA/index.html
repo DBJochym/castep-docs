@@ -1705,7 +1705,7 @@
 </ul>
 <p>These parameters are chosen due to computational resources available in this workshop, but can be trivially increased based on available resources.</p>
 <p>The large comment block at the bottom of the input file lists a lot of parameters that can be used with the various GA methods currently implemented. However, for now let's run a GA!</p>
-<h2 id="running-the-castep-ga-approx-5-6-mins-runtime">Running the CASTEP GA (Approx 5-6 mins runtime)</h2>
+<h2 id="running-the-castep-ga-approx-5-6-mins-runtime">Running the CASTEP GA (Approx. 5-6 mins runtime)</h2>
 <p>First lets check our CASTEP and CASTEP GA binaries are accessible by running:</p>
 <pre><code>which castep_GA &amp;&amp; which castep.mpi
 </code></pre>
@@ -1833,7 +1833,7 @@
 <p>The <code>SiC_GA_best.param</code> file contains standard CASTEP parameters for a Damped Molecular Dynamics (DMD) geometry optimisation. Along with this is the devel code block required to call <code>hybrid-md</code> (which then calls <code>gap_fit</code>) to perform the GAP fitting.</p>
 <p>Finally, there is an extra input file required for a GAP run, the <code>&lt;SEED&gt;.hybrid-md-input.yaml</code> file. This contains specific inputs relating to the GAP fitting. Here we specify a mandatory 10 initial DFT steps for the initial training dataset. After this we specify a minimum of 10 steps with the machine learned potential before re-fitting, whilst allowing CASTEP to vary the number of steps between re-fittings. We also allow GAP to also parellise over 3 cores.</p>
 <p><strong>N.B.</strong> The GAP run we carry out here has rather coarse convergence parameters, designed to allow for a fast run on a desktop in this workshop.</p>
-<h2 id="running-castep-with-gap-approx-10-15-mins-runtime">Running CASTEP with GAP (Approx.$ 10-15 mins runtime)</h2>
+<h2 id="running-castep-with-gap-approx-10-15-mins-runtime">Running CASTEP with GAP (Approx. 10-15 mins runtime)</h2>
 <p>To run CASTEP to perform the damped MD geometry optimisation with the aid of GAP call</p>
 <pre><code>mpirun -n 3 castep.mpi SiC_GA_best
 </code></pre>
