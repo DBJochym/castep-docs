@@ -1684,7 +1684,7 @@
 <p>Let's assume we don't know the ground state Stillinger-Weber silicon structure and set out to discover it using the CASTEP GA!</p>
 <h2 id="input-files">Input Files</h2>
 <p>First navigate to the directory</p>
-<pre><code>./CASTEP_workshop_GA/1_Si_SW_GA
+<pre><code>cd CASTEP_workshop_GA/1_Si_SW_GA
 </code></pre>
 <p>which should contain a CASTEP <code>Si.cell</code> and <code>Si.param</code> file, as well as the bash script <code>get_data.sh</code> and a python script <code>plot_results.py</code> (which we will use for results analysis later).</p>
 <p>Like standard CASTEP, the CASTEP GA requires both a cell and a param file input. However, we likely do not know what the best cell structure is. As such, we give a cell that contains multiple ions of the species that we are interested in. The number of ions given in this cell is used as a baseline for the number of ions in cells created &amp; bred over the course of the GA, where at least one ion of each species will always be represented at least once in each cell. We can also fix the number of ions in each population member to match that in the input cell. We should not add too few ions, as cells with more ions contain more `genetic information', meaning smaller cells don't benefit from breeding operations as much.</p>
@@ -1705,7 +1705,7 @@
 </ul>
 <p>These parameters are chosen due to computational resources available in this workshop, but can be trivially increased based on available resources.</p>
 <p>The large comment block at the bottom of the input file lists a lot of parameters that can be used with the various GA methods currently implemented. However, for now let's run a GA!</p>
-<h2 id="running-the-castep-ga-simsim-5-6-mins-runtime">Running the CASTEP GA (<span class="arithmatex"><span class="MathJax_Preview">\sim</span><script type="math/tex">\sim</script></span> 5-6 mins runtime)</h2>
+<h2 id="running-the-castep-ga-approx-5-6-mins-runtime">Running the CASTEP GA (Approx 5-6 mins runtime)</h2>
 <p>First lets check our CASTEP and CASTEP GA binaries are accessible by running:</p>
 <pre><code>which castep_GA &amp;&amp; which castep.mpi
 </code></pre>
@@ -1776,7 +1776,7 @@
 <pre><code>Tol=0.001    International symmetry is Fd-3m
 </code></pre>
 <p>which is the diamond structure space group we would expect for Si.</p>
-<h2 id="ga-continuation-simsim-2-mins-runtime">GA Continuation (<span class="arithmatex"><span class="MathJax_Preview">\sim</span><script type="math/tex">\sim</script></span> 2 mins runtime)</h2>
+<h2 id="ga-continuation-approx-2-mins-runtime">GA Continuation (Approx. 2 mins runtime)</h2>
 <p>It is possible you won't find the <span class="arithmatex"><span class="MathJax_Preview">\text{Fd}\overline{3}\text{m}</span><script type="math/tex">\text{Fd}\overline{3}\text{m}</script></span> structure (or one close to it, remember the GA is a coarse search) as there is some randomness in a GA run and our population size and number of generations is small. But don't worry, it is possible to restart a GA run from exactly where you left off. Let's do this now (even if you did find the <span class="arithmatex"><span class="MathJax_Preview">\text{Fd}\overline{3}\text{m}</span><script type="math/tex">\text{Fd}\overline{3}\text{m}</script></span> structure).</p>
 <p>To perform a continuation open the <code>Si.param</code> file in your text editor of choice. We then tell CASTEP GA we want to continue from where we left off. We do this by giving the location of the <code>.xyz</code> file that contains all explored structures by uncommenting the following in the <code>Si.param</code> file</p>
 <pre><code># continuation = Si.xyz
@@ -1808,7 +1808,7 @@
 </code></pre>
 <p>Luckily CASTEP allows us to add our own parameterisation values for pair potentials. A parameterisation for an SiC SW pair potential has been added to the devel code block of the parameter file <code>SiC.param</code>.</p>
 <p>This parameterisation leads to a more complex potential energy landscape than we saw with Si. Due to the limitations of this pair potential parameterisation the GA will find different structures than we would find with <em>ab-inito</em> calculations as this is a pair potential energy landscape. However, it will run quickly enough to be usable with the computational and time resources available. As such we will use the GA to explore this unknown potential energy landscape as we did with Si. N.B. Everything we are doing here works just the same with DFT.</p>
-<h2 id="running-the-castep-ga-simsim-5-10-mins-runtime">Running the CASTEP GA (<span class="arithmatex"><span class="MathJax_Preview">\sim</span><script type="math/tex">\sim</script></span> 5-10 mins runtime)</h2>
+<h2 id="running-the-castep-ga-approx-5-10-mins-runtime">Running the CASTEP GA (Approx.$ 5-10 mins runtime)</h2>
 <p>The <code>SiC.param</code> file is very similar to the one used for Si, except the initial population is no longer completely random but instead generated as random high symmetry cells. The cell file contains an equal number of Si and C ions in random positions in a not unreasonably sized cell for this many ions Si and C ions.</p>
 <p>To run CASTEP GA execute</p>
 <pre><code>castep_GA SiC
@@ -1833,7 +1833,7 @@
 <p>The <code>SiC_GA_best.param</code> file contains standard CASTEP parameters for a Damped Molecular Dynamics (DMD) geometry optimisation. Along with this is the devel code block required to call <code>hybrid-md</code> (which then calls <code>gap_fit</code>) to perform the GAP fitting.</p>
 <p>Finally, there is an extra input file required for a GAP run, the <code>&lt;SEED&gt;.hybrid-md-input.yaml</code> file. This contains specific inputs relating to the GAP fitting. Here we specify a mandatory 10 initial DFT steps for the initial training dataset. After this we specify a minimum of 10 steps with the machine learned potential before re-fitting, whilst allowing CASTEP to vary the number of steps between re-fittings. We also allow GAP to also parellise over 3 cores.</p>
 <p><strong>N.B.</strong> The GAP run we carry out here has rather coarse convergence parameters, designed to allow for a fast run on a desktop in this workshop.</p>
-<h2 id="running-castep-with-gap-simsim-10-15-mins-runtime">Running CASTEP with GAP (<span class="arithmatex"><span class="MathJax_Preview">\sim</span><script type="math/tex">\sim</script></span> 10-15 mins runtime)</h2>
+<h2 id="running-castep-with-gap-approx-10-15-mins-runtime">Running CASTEP with GAP (Approx.$ 10-15 mins runtime)</h2>
 <p>To run CASTEP to perform the damped MD geometry optimisation with the aid of GAP call</p>
 <pre><code>mpirun -n 3 castep.mpi SiC_GA_best
 </code></pre>
