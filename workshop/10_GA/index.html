@@ -1699,7 +1699,8 @@
 <p>This should make everything we need available to us and you should now see</p>
 <pre><code>(castep_GA_workshop_venv) USER@teaching0:
 </code></pre>
-<p>on your command line. <strong>Note:</strong> if the terminal window is closed, or we disconnect from <code>teaching0</code> this <code>source</code> command will have to be re-ran to re-load all the required packages.</p>
+<p>on your command line.
+<strong>Note:</strong> if the terminal window is closed, or we disconnect from <code>teaching0</code> this <code>source</code> command will have to be re-ran to re-load all the required packages.</p>
 <p>You should be in your home directory, so now extract the GA workshop files into your home directory</p>
 <pre><code>tar -zxf /tmp/CASTEP_workshop_GA.tar.gz
 </code></pre>
@@ -1834,7 +1835,7 @@
 </code></pre>
 <p>Luckily CASTEP allows us to add our own parameterisation values for pair potentials. A parameterisation for an SiC SW pair potential has been added to the devel code block of the parameter file <code>SiC.param</code>.</p>
 <p>This parameterisation leads to a more complex potential energy landscape than we saw with Si. Due to the limitations of this pair potential parameterisation the GA will find different structures than we would find with <em>ab-inito</em> calculations as this is a pair potential energy landscape. However, it will run quickly enough to be usable with the computational and time resources available. As such we will use the GA to explore this unknown potential energy landscape as we did with Si. N.B. Everything we are doing here works just the same with DFT.</p>
-<h2 id="running-the-castep-ga-approx-5-10-mins-runtime">Running the CASTEP GA (Approx.$ 5-10 mins runtime)</h2>
+<h2 id="running-the-castep-ga-approx-5-10-mins-runtime">Running the CASTEP GA (Approx. 5-10 mins runtime)</h2>
 <p>The <code>SiC.param</code> file is very similar to the one used for Si, except the initial population is no longer completely random but instead generated as random high symmetry cells. The cell file contains an equal number of Si and C ions in random positions in a not unreasonably sized cell for this many ions Si and C ions.</p>
 <p>To run CASTEP GA execute</p>
 <pre><code>castep_GA SiC
@@ -1876,8 +1877,7 @@
 <pre><code>grep SiC_GA_best.castep -e "Decided to perform" | wc -l
 </code></pre>
 <p>In my case this showed that 22 of the total DMD steps were using DFT, therefore approximately 85% of the DMD steps were carried out with the machine learned potential. Though there is a cost associated with these steps and with the re-fitting of the GAP potential, it is clear this represents a large cost saving. Very roughly (based on average time for one SCF cycle in my DMD run) without GAP this run would have taken approximately 4 times as long for no extra information.</p>
-<p>We can also visualize (using jmol or similar) both the output structure from the DMD run (<code>SiC_GA_best-out.cell</code>) and the pre-geometry optimisation structure (<code>SiC_GA_best.cell</code>). It is likely these are quite different. This suggests the SiC SW pair potential parameterisation is not the best with respect to DFT results.</p>
-<p>However, we have managed to show the CASTEP GA makes it possible to easily explore a potential energy landscape with no prior knowledge of the landscape, finding both lowest energy structures and other information about the phase space. We have also shown it is possible, with no requirement for external training datasets, to exploit machine learning within CASTEP to accelerate geometry optimisations and molecular dynamics calculations.</p>
+<p>We can also visualize (using jmol or similar) both the output structure from the DMD run (<code>SiC_GA_best-out.cell</code>) and the pre-geometry optimisation structure (<code>SiC_GA_best.cell</code>). It is likely these are quite different. This is due to the difference (and lower quality!) of the SW parameterisation compared with any DFT approach.</p>
 <h2 id="optional-extension-running-ga-with-other-systems">(Optional Extension) Running GA with Other Systems</h2>
 <p>You may also want to try the CASTEP GA with another system or pair potential parameterisation (it is likely not possible to run a full DFT run of the GA in the timescale of this practical). If this is the case you can use the blank input file in</p>
 <pre><code>./CASTEP_workshop_GA/2.5_GA_blank
